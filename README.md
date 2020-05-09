@@ -5,16 +5,18 @@
 ## 增加摘要网页
 
 ```shell
-webhash add https://pinyin.sogou.com/linux/changelog.php
+webhash add https://api.github.com/repos/golang/go/milestones/72
 ```
 
-## 检查网页内容变化
+## 检查网页内容修改
 
 ```shell
 webhash check
+# 或者
+webhash
 ```
 
-## 更新网页变化
+## 更新网页摘要
 
 ```shell
 webhash update
