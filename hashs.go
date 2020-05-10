@@ -16,6 +16,9 @@ func (h *Hashs) Add(hash *Hash) {
 // NewHashs 新建列表
 func NewHashs(i interface{}) Hashs {
 	hashs := Hashs{}
+	if i == nil {
+		return hashs
+	}
 	for _, h := range i.([]interface{}) {
 		if hash, err := Parse(h); err == nil {
 			hashs.Add(hash)

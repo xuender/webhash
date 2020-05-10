@@ -2,6 +2,20 @@
 
 网页摘要计算
 
+## 安装
+
+curl
+
+```shell
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/xuender/webhash/master/install.sh)"
+```
+
+wget
+
+```shell
+sh -c "$(wget -O- https://raw.githubusercontent.com/xuender/webhash/master/install.sh)"
+```
+
 ## 增加摘要网页
 
 ```shell
@@ -32,8 +46,8 @@ watch.sh
 
 ## 定时执行
 
-1. 下载 webhash
-1. 下载 watch.sh
+1. [安装 webhash](#安装)
+1. 下载 [watch.sh](https://raw.githubusercontent.com/xuender/webhash/master/watch.sh)
 1. 复制到 `~/bin` 目录
 1. 设置定时任务 `crontab -e`
 

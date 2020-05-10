@@ -22,7 +22,7 @@ type Hash struct {
 
 func (h *Hash) String() string {
 	if h.Error == nil {
-		return fmt.Sprintf("摘要: %d, 网址: [%s] 时间: %s", h.Sum, h.URL, time.Unix(h.Time, 0))
+		return fmt.Sprintf("摘要: %X, 网址: [%s] 时间: %s", h.Sum, h.URL, time.Unix(h.Time, 0).Format("06-01-02 15:04:05"))
 	}
 	return fmt.Sprintf("网址: [%s] 错误: %s", h.URL, h.Error)
 }

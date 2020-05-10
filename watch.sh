@@ -1,4 +1,5 @@
 #!/bin/bash
+# 监听网页变化
 user=`whoami`
 command="/home/$user/bin/webhash"
 report=`$command -r`

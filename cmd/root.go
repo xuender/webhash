@@ -13,19 +13,20 @@ import (
 var cfgFile string
 
 var rootCmd = &cobra.Command{
-	Use:   "webhash",
-	Short: "网页摘要",
-	Long:  `生成网页摘要`,
+	Use:     "webhash",
+	Short:   "网页摘要",
+	Long:    `生成网页摘要`,
+	Version: "1.0.1",
 	Run: func(cmd *cobra.Command, args []string) {
 		hashs := webhash.NewHashs(viper.Get("hashs"))
-		if len(hashs) > 0 {
-			for _, c := range cmd.Commands() {
-				if c.Use == "check" {
-					c.Run(cmd, args)
-				}
-			}
-		} else {
+		if len(hashs) == 0 {
 			cmd.Help()
+			return
+		}
+		for _, c := range cmd.Commands() {
+			if c.Use == "check" {
+				c.Run(cmd, args)
+			}
 		}
 	},
 }

@@ -14,4 +14,4 @@ clean:
 buildall:
 	$(foreach OS, $(GOOS),\
 	$(foreach ARCH, $(GOARCH),\
-	$(shell export GOOS=$(OS); export GOARCH=$(ARCH); go build -o bin/$(BINARY)-$(OS)-$(ARCH) main/main.go)))
+	$(shell export GOOS=$(OS); export GOARCH=$(ARCH); go build -o bin/$(BINARY)_$(OS)_$(ARCH) main/main.go)))
