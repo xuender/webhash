@@ -6,7 +6,6 @@ Copyright © 2020 妙音 <xuender@139.com>
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -21,27 +20,12 @@ var checkCmd = &cobra.Command{
 
 webhash check`,
 	Run: func(cmd *cobra.Command, args []string) {
-		report, _ := cmd.Flags().GetBool("report")
 		hashs := webhash.NewHashs(viper.Get("hashs"))
-		urls := []string{}
 		for _, h := range hashs {
 			if hash, err := webhash.Parse(h); err == nil {
 				if !hash.Get() {
-					if report {
-						urls = append(urls, hash.URL)
-					} else {
-						fmt.Println(hash)
-					}
+					fmt.Println(hash)
 				}
-			} else {
-				if !report {
-					fmt.Println(err)
-				}
-			}
-		}
-		if report {
-			if len(urls) > 0 {
-				fmt.Printf("%d个网址发生修改, [%s]\n", len(urls), strings.Join(urls, ","))
 			}
 		}
 	},

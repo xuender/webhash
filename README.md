@@ -36,22 +36,17 @@ webhash
 webhash update
 ```
 
-## linux 通知
-
-使用 `notify-send` 命令
+## 监视网页修改
 
 ```shell
-watch.sh
+webhash watch
 ```
 
 ## 定时执行
 
-1. [安装 webhash](#安装)
-1. 下载 [watch.sh](https://raw.githubusercontent.com/xuender/webhash/master/watch.sh)
-1. 复制到 `~/bin` 目录
-1. 设置定时任务 `crontab -e`
+设置定时任务 `crontab -e`
 
   ```shell
   # 每小时执行一次
-  0 * * * * /home/$(whoami)/bin/watch.sh
+  0 * * * * /home/$(whoami)/bin/webhash watch
   ```

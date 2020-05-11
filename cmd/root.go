@@ -16,7 +16,7 @@ var rootCmd = &cobra.Command{
 	Use:     "webhash",
 	Short:   "网页摘要",
 	Long:    `生成网页摘要`,
-	Version: "1.1.0",
+	Version: "1.1.1",
 	Run: func(cmd *cobra.Command, args []string) {
 		hashs := webhash.NewHashs(viper.Get("hashs"))
 		if len(hashs) == 0 {
@@ -50,7 +50,7 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	rootCmd.Flags().BoolP("report", "r", false, "报告输出")
+	// rootCmd.Flags().BoolP("report", "r", false, "报告输出")
 }
 
 // initConfig reads in config file and ENV variables if set.
