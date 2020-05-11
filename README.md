@@ -1,6 +1,6 @@
-# webhash
+# Webhash
 
-网页摘要计算
+网页摘要计算, 使用 [HighwayHash](https://github.com/google/highwayhash) 算法
 
 ## 安装
 
