@@ -46,7 +46,7 @@ webhash watch
 
 设置定时任务 `crontab -e`
 
-  ```shell
-  # 每小时执行一次
-  0 * * * * /home/$(whoami)/bin/webhash watch
-  ```
+```shell
+# 每小时执行一次
+0 * * * * /home/$(whoami)/bin/webhash watch
+```

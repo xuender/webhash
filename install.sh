@@ -1,6 +1,6 @@
 #!/bin/bash
 BINARY=webhash
-BIN_PATH=/home/$(whoami)/bin
+BIN_PATH=$HOME/bin
 UNAME=$(uname)
 ARCH=$(uname -m)
 if [ "$UNAME" = "Darwin" ] ; then
