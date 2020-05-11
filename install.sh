@@ -30,6 +30,7 @@ install () {
   fi
   mkdir -p $BIN_PATH
   LATEST=$(get_latest_release)
+  echo "$LATEST"
   URL="https://github.com/xuender/webhash/releases/download/$LATEST/${BINARY}_${PLATFORM}"
   echo "download $URL"
   rm -rf $DEST
