@@ -4,8 +4,8 @@ go 1.14
 
 require (
 	github.com/asaskevich/govalidator v0.0.0-20200428143746-21a406dcc535
-	github.com/dchest/siphash v1.2.1
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
+	github.com/minio/highwayhash v1.0.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/mitchellh/mapstructure v1.3.0
 	github.com/pelletier/go-toml v1.7.0 // indirect

@@ -44,7 +44,7 @@ func (h *Hash) Get() (keep bool) {
 		h.Error = err
 		return
 	}
-	sum := Siphash(bytes)
+	sum := Highwayhash(bytes)
 	keep = h.Sum == sum
 	h.Sum = sum
 	return
@@ -53,7 +53,7 @@ func (h *Hash) Get() (keep bool) {
 // New 新建摘要
 func New(webURL string) (h *Hash) {
 	h = &Hash{
-		ID:   Siphash([]byte(webURL)),
+		ID:   Highwayhash([]byte(webURL)),
 		URL:  webURL,
 		Time: time.Now().Unix(),
 	}
