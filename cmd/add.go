@@ -18,7 +18,7 @@ var addCmd = &cobra.Command{
 	Short: "增加监听网址",
 	Long: `增加监听网址，方便以后随时检查:
 
-webhash add https://pinyin.sogou.com/linux/changelog.php`,
+webhash add https://api.github.com/repos/golang/go/milestones/72`,
 	Run: func(cmd *cobra.Command, args []string) {
 		hashs := webhash.NewHashs(viper.Get("hashs"))
 		for _, hash := range webhash.Batch(args) {
