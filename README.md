@@ -48,5 +48,5 @@ webhash watch
 
 ```shell
 # 每小时执行一次
-0 * * * * /home/$(whoami)/bin/webhash watch
+0 * * * * ${HOME}/bin/webhash watch
 ```

@@ -1,17 +1,20 @@
 BINARY=webhash
-GOOS=linux darwin freebsd windows
-GOARCH=386 amd64
 
-all: test build
+all: clean test
+	@export GOOS=linux GOARCH=386; $(MAKE) build;
+	@export GOOS=linux GOARCH=amd64; $(MAKE) build;
+	@export GOOS=windows GOARCH=386 EXT=.exe; $(MAKE) build;
+	@export GOOS=windows GOARCH=amd64 EXT=.exe; $(MAKE) build;
+	@export GOOS=darwin GOARCH=386; $(MAKE) build;
+	@export GOOS=darwin GOARCH=amd64; $(MAKE) build;
+	@export GOOS=freebsd GOARCH=386; $(MAKE) build;
+	@export GOOS=freebsd GOARCH=amd64; $(MAKE) build;
 build:
-	mkdir -p bin
-	go build -o bin/$(BINARY) main/main.go
-test:
-	go test -v ./...
+	@mkdir -p bin
+	@echo "[${GOOS}_${GOARCH}] build ..." && \
+	CGO_ENABLED=0 go build -o bin/$(BINARY)_$(GOOS)_$(GOARCH)${EXT} main/main.go
 clean:
 	go clean
 	rm -rf bin
-buildall:
-	$(foreach OS, $(GOOS),\
-	$(foreach ARCH, $(GOARCH),\
-	$(shell export GOOS=$(OS); export GOARCH=$(ARCH); go build -o bin/$(BINARY)_$(OS)_$(ARCH) main/main.go)))
+test:
+	go test -v ./...
