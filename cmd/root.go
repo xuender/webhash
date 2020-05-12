@@ -16,7 +16,7 @@ var rootCmd = &cobra.Command{
 	Use:     "webhash",
 	Short:   "网页摘要",
 	Long:    `生成网页摘要`,
-	Version: "1.1.2",
+	Version: "1.1.3",
 	Run: func(cmd *cobra.Command, args []string) {
 		hashs := webhash.NewHashs(viper.Get("hashs"))
 		if len(hashs) == 0 {

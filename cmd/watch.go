@@ -7,6 +7,7 @@ Copyright © 2020 妙音 <xuender@139.com>
 import (
 	"fmt"
 	"os/exec"
+	"runtime"
 	"strings"
 	"time"
 
@@ -41,22 +42,41 @@ webhash watch`,
 				viper.WriteConfigAs(home + "/.webhash.yaml")
 			}
 		}
-		// TODO mac
-		// Linux
 		if len(urls) > 0 {
-			commands := []string{
-				"XDG_RUNTIME_DIR=/run/user/$(id -u)",
-				"notify-send",
-				"'Webhash 提示:'",
-				"",
-				"-u",
-				"critical",
-				"-i",
-				"applications-internet",
+			title := "'Webhash 提示:'"
+			message := fmt.Sprintf("'%d个网页发生修改，[%s]'", len(urls), strings.Join(urls, ", "))
+			switch runtime.GOOS {
+			case "linux":
+				if _, err := exec.LookPath("notify-send"); err != nil {
+					return
+				}
+				args := []string{
+					"-c",
+					"XDG_RUNTIME_DIR=/run/user/$(id -u)",
+					"notify-send",
+					"-u",
+					"critical",
+					"-i",
+					"applications-internet",
+					title,
+					message,
+				}
+				exec.Command("sh", args...).Run()
+			case "darwin":
+				if _, err := exec.LookPath("terminal-notifier"); err != nil {
+					return
+				}
+				args := []string{
+					"-e",
+					"display",
+					"notification",
+					message,
+					"with",
+					"title",
+					title,
+				}
+				exec.Command("osascript", args...).Run()
 			}
-			commands[3] = fmt.Sprintf("'%d个网页发生修改，[%s]'", len(urls), strings.Join(urls, ", "))
-			c := exec.Command("sh", "-c", strings.Join(commands, " "))
-			c.Output()
 		}
 	},
 }
