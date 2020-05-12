@@ -44,10 +44,18 @@ webhash watch`,
 		// TODO mac
 		// Linux
 		if len(urls) > 0 {
-			commands := []string{"XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send", "\"Webhash 提示:\"", ""}
-			commands[2] = fmt.Sprintf("\"%d个网页发生修改，[%s]\"", len(urls), strings.Join(urls, ", "))
+			commands := []string{
+				"XDG_RUNTIME_DIR=/run/user/$(id -u)",
+				"notify-send",
+				"\"Webhash 提示:\"",
+				"",
+				"-u",
+				"critical",
+				"-i",
+				"applications-internet",
+			}
+			commands[3] = fmt.Sprintf("\"%d个网页发生修改，[%s]\"", len(urls), strings.Join(urls, ", "))
 			c := exec.Command("sh", "-c", strings.Join(commands, " "))
-			fmt.Println(strings.Join(commands, " "))
 			c.Output()
 		}
 	},
