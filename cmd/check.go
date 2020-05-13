@@ -23,7 +23,7 @@ webhash check`,
 		hashs := webhash.NewHashs(viper.Get("hashs"))
 		for _, h := range hashs {
 			if hash, err := webhash.Parse(h); err == nil {
-				if !hash.Get() {
+				if keep, _ := hash.Get(); !keep {
 					fmt.Println(hash)
 				}
 			}

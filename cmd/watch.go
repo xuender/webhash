@@ -28,7 +28,7 @@ webhash watch`,
 		urls := []string{}
 		for i, h := range hashs {
 			if hash, err := webhash.Parse(h); err == nil {
-				if !hash.Get() {
+				if keep, err2 := hash.Get(); !keep && err2 == nil {
 					urls = append(urls, hash.URL)
 					hashs[i].Time = time.Now().Unix()
 					hashs[i].Sum = hash.Sum

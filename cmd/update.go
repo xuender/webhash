@@ -24,12 +24,12 @@ webhash update`,
 		hashs := webhash.NewHashs(viper.Get("hashs"))
 		for i, h := range hashs {
 			if hash, err := webhash.Parse(h); err == nil {
-				if hash.Get() {
-					fmt.Println(hash)
-				} else {
+				if keep, err := hash.Get(); !keep && err == nil {
 					fmt.Printf("发生修改 -> %s\n", hash)
 					hashs[i].Time = time.Now().Unix()
 					hashs[i].Sum = hash.Sum
+				} else {
+					fmt.Println(hash)
 				}
 			} else {
 				fmt.Println(err)

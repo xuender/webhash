@@ -28,7 +28,8 @@ func (h *Hash) String() string {
 }
 
 // Get 请求
-func (h *Hash) Get() (keep bool) {
+func (h *Hash) Get() (keep bool, err error) {
+	keep = false
 	resp, err := http.Get(h.URL)
 	if err != nil {
 		h.Error = err
@@ -37,6 +38,7 @@ func (h *Hash) Get() (keep bool) {
 	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
 		h.Error = fmt.Errorf("网络异常:%d", resp.StatusCode)
+		err = h.Error
 		return
 	}
 	bytes, err := ioutil.ReadAll(resp.Body)
