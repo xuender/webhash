@@ -50,18 +50,10 @@ webhash watch`,
 				if _, err := exec.LookPath("notify-send"); err != nil {
 					return
 				}
-				args := []string{
-					"-c",
-					"XDG_RUNTIME_DIR=/run/user/$(id -u)",
-					"notify-send",
-					"-u",
-					"critical",
-					"-i",
-					"applications-internet",
-					title,
-					message,
-				}
-				exec.Command("sh", args...).Run()
+				comm := fmt.Sprintf(`XDG_RUNTIME_DIR=/run/user/$(id -u) notify-send -u critical -i applications-internet %s %s`, title, message)
+				// fmt.Println(comm)
+				exec.Command("sh", "-c", comm).Run()
+				// fmt.Println(err)
 			case "darwin":
 				if _, err := exec.LookPath("terminal-notifier"); err != nil {
 					return
