@@ -4,16 +4,24 @@
 
 ## 安装
 
-curl
+### 有Golang环境
 
 ```shell
-sh -c "$(curl -fsSL https://github.com/xuender/webhash/raw/master/install.sh)"
+go get github.com/xuender/webhash/cmd/webhash
 ```
+
+### 无Golang环境
 
 wget
 
 ```shell
 sh -c "$(wget -O- https://github.com/xuender/webhash/raw/master/install.sh)"
+```
+
+curl
+
+```shell
+sh -c "$(curl -fsSL https://github.com/xuender/webhash/raw/master/install.sh)"
 ```
 
 ## 增加摘要网页
